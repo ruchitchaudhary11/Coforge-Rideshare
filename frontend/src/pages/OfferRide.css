@@ -1,0 +1,571 @@
+.offer-page {
+    min-height: calc(100vh - 70px);
+    padding: 55px 6%;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            #e8f0ff 0,
+            transparent 35%
+        ),
+        #f5f7fb;
+}
+
+.offer-wrapper {
+    max-width: 1180px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+
+    gap: 35px;
+    align-items: stretch;
+}
+
+
+/* =========================
+   LEFT PANEL
+========================= */
+
+.offer-info {
+    padding: 35px 25px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.offer-brand {
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #dbeafe;
+    border-radius: 16px;
+
+    font-size: 28px;
+
+    margin-bottom: 28px;
+}
+
+.offer-label {
+    margin: 0 0 12px;
+
+    color: #2563eb;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.offer-info h1 {
+    margin: 0;
+
+    color: #172554;
+
+    font-size: 46px;
+    line-height: 1.12;
+    letter-spacing: -1.5px;
+}
+
+.offer-info h1 span {
+    display: block;
+    color: #2563eb;
+}
+
+.offer-description {
+    max-width: 480px;
+
+    margin: 22px 0 35px;
+
+    color: #64748b;
+
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+
+/* BENEFITS */
+
+.offer-benefits {
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+.benefit {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+}
+
+.benefit-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: white;
+
+    border-radius: 11px;
+
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.06);
+
+    font-size: 19px;
+}
+
+.benefit strong {
+    display: block;
+
+    color: #172554;
+
+    font-size: 14px;
+
+    margin-bottom: 3px;
+}
+
+.benefit p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   FORM CARD
+========================= */
+
+.offer-form-card {
+    background: white;
+
+    padding: 36px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 15px 45px rgba(15, 23, 42, 0.09);
+}
+
+.offer-form-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-bottom: 25px;
+
+    margin-bottom: 5px;
+
+    border-bottom: 1px solid #eef2f7;
+}
+
+.offer-form-header h2 {
+    margin: 0 0 6px;
+
+    color: #172554;
+
+    font-size: 25px;
+}
+
+.offer-form-header p {
+    margin: 0;
+
+    color: #94a3b8;
+
+    font-size: 13px;
+}
+
+.form-car-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eff6ff;
+
+    border-radius: 12px;
+
+    font-size: 23px;
+}
+
+
+/* =========================
+   FORM SECTIONS
+========================= */
+
+.form-section {
+    padding: 23px 0;
+
+    border-bottom: 1px solid #eef2f7;
+}
+
+.section-title {
+    margin-bottom: 15px;
+
+    color: #334155;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.form-field label {
+    color: #475569;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.form-field input {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 12px 13px;
+
+    border: 1px solid #dbe2ea;
+
+    border-radius: 9px;
+
+    color: #1e293b;
+
+    background: white;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+.form-field input::placeholder {
+    color: #a1aab7;
+}
+
+.form-field input:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.09);
+}
+
+
+/* ROUTE */
+
+.route-fields {
+    display: grid;
+
+    grid-template-columns: 1fr 25px 1fr;
+
+    gap: 12px;
+
+    align-items: end;
+}
+
+.route-connector {
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #2563eb;
+
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.input-with-icon {
+    position: relative;
+}
+
+.input-with-icon input {
+    padding-left: 35px;
+}
+
+.location-dot,
+.destination-dot {
+    position: absolute;
+
+    left: 13px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-size: 11px;
+
+    z-index: 1;
+}
+
+.location-dot {
+    color: #2563eb;
+}
+
+.destination-dot {
+    color: #172554;
+}
+
+
+/* DETAILS */
+
+.details-fields {
+    display: grid;
+
+    grid-template-columns:
+        1.3fr
+        0.8fr
+        0.8fr;
+
+    gap: 14px;
+}
+
+
+/* PRICE */
+
+.price-field {
+    display: flex;
+
+    align-items: center;
+
+    border: 1px solid #dbe2ea;
+
+    border-radius: 9px;
+
+    overflow: hidden;
+}
+
+.price-field span {
+    padding-left: 13px;
+
+    color: #64748b;
+
+    font-weight: 700;
+}
+
+.price-field input {
+    border: none;
+
+    border-radius: 0;
+
+    box-shadow: none;
+}
+
+.price-field input:focus {
+    box-shadow: none;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.publish-button {
+    width: 100%;
+
+    margin-top: 24px;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.publish-button:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 6px 18px rgba(37, 99, 235, 0.2);
+}
+
+.publish-button:disabled {
+    background: #93c5fd;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* =========================
+   MESSAGES
+========================= */
+
+.offer-success {
+    margin-top: 18px;
+
+    padding: 12px 14px;
+
+    border-radius: 8px;
+
+    background: #ecfdf5;
+
+    border: 1px solid #a7f3d0;
+
+    color: #047857;
+
+    font-size: 13px;
+}
+
+.offer-error {
+    margin-top: 18px;
+
+    padding: 12px 14px;
+
+    border-radius: 8px;
+
+    background: #fef2f2;
+
+    border: 1px solid #fecaca;
+
+    color: #b91c1c;
+
+    font-size: 13px;
+}
+
+.form-note {
+    margin: 12px 0 0;
+
+    color: #94a3b8;
+
+    font-size: 11px;
+
+    text-align: center;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 950px) {
+
+    .offer-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .offer-info {
+        padding: 10px 5px 25px;
+    }
+
+    .offer-info h1 {
+        font-size: 38px;
+    }
+
+    .offer-description {
+        margin-bottom: 25px;
+    }
+
+    .offer-benefits {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .benefit {
+        flex: 1;
+        min-width: 200px;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .offer-page {
+        padding: 30px 15px;
+    }
+
+    .offer-form-card {
+        padding: 25px 20px;
+    }
+
+    .route-fields {
+        grid-template-columns: 1fr;
+    }
+
+    .route-connector {
+        display: none;
+    }
+
+    .details-fields {
+        grid-template-columns: 1fr;
+    }
+
+    .offer-info h1 {
+        font-size: 32px;
+    }
+
+    .offer-benefits {
+        flex-direction: column;
+    }
+
+    .offer-form-header h2 {
+        font-size: 22px;
+    }
+
+}
+.location-input {
+    position: relative;
+    width: 100%;
+}
+
+.location-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-top: 5px;
+    overflow: hidden;
+    z-index: 1000;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.location-suggestion {
+    padding: 12px 15px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.location-suggestion:hover {
+    background: #f1f5ff;
+}

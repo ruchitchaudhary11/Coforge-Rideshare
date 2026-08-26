@@ -1,0 +1,187 @@
+.edit-ride-page {
+    min-height: calc(100vh - 70px);
+
+    padding: 50px 20px;
+
+    background: #f5f7fb;
+}
+
+.edit-ride-card {
+    width: 100%;
+    max-width: 750px;
+
+    margin: auto;
+
+    padding: 35px;
+
+    background: white;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 35px rgba(15, 23, 42, 0.08);
+}
+
+.edit-back-button {
+    border: none;
+
+    background: transparent;
+
+    color: #2563eb;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    margin-bottom: 25px;
+}
+
+.edit-header {
+    margin-bottom: 30px;
+}
+
+.edit-header p {
+    margin: 0 0 8px;
+
+    color: #2563eb;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.edit-header h1 {
+    margin: 0 0 7px;
+
+    color: #172554;
+
+    font-size: 30px;
+}
+
+.edit-header span {
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+.edit-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 18px;
+
+    margin-bottom: 18px;
+}
+
+.edit-field {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    margin-bottom: 18px;
+}
+
+.edit-field label {
+    color: #334155;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+.edit-field input {
+    padding: 13px;
+
+    border: 1px solid #dbe2ea;
+
+    border-radius: 9px;
+
+    outline: none;
+
+    font-size: 14px;
+
+    color: #172554;
+}
+
+.edit-field input:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.save-ride-button {
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.save-ride-button:hover {
+    background: #1d4ed8;
+}
+
+.save-ride-button:disabled {
+    background: #93c5fd;
+
+    cursor: not-allowed;
+}
+
+.edit-error,
+.edit-success {
+    margin-bottom: 18px;
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+}
+
+.edit-error {
+    background: #fef2f2;
+
+    color: #b91c1c;
+
+    border: 1px solid #fecaca;
+}
+
+.edit-success {
+    background: #ecfdf5;
+
+    color: #047857;
+
+    border: 1px solid #a7f3d0;
+}
+
+@media (max-width: 650px) {
+
+    .edit-ride-card {
+        padding: 25px 20px;
+    }
+
+    .edit-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
