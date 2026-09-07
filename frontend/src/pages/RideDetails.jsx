@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getRideById } from "../services/rideApi";
 import "./RideDetails.css";
+import RouteMap from "../components/RouteMap";
 
 function RideDetails() {
 
@@ -69,6 +70,19 @@ function RideDetails() {
             </div>
         );
     }
+    const pickupLocation = {
+    name: ride.source,
+    address: ride.source,
+    latitude: ride.sourceLatitude,
+    longitude: ride.sourceLongitude
+};
+
+const destinationLocation = {
+    name: ride.destination,
+    address: ride.destination,
+    latitude: ride.destinationLatitude,
+    longitude: ride.destinationLongitude
+};
 
     return (
         <div className="ride-details-page">
@@ -125,6 +139,7 @@ function RideDetails() {
                         </div>
 
 
+
                         <div className="vertical-line"></div>
 
 
@@ -145,6 +160,20 @@ function RideDetails() {
                         </div>
 
                     </div>
+                        <div className="details-map-section">
+
+                         <h2>Route</h2>
+
+                         <RouteMap
+                            pickup={pickupLocation}
+                            destination={destinationLocation}
+                        />
+
+                        </div>
+
+
+                    
+
 
 
                     <div className="ride-info-grid">

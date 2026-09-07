@@ -2,18 +2,27 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createRide } from "../services/rideApi";
 import "./OfferRide.css";
+import LocationInput from "../components/LocationInput";
+import RouteMap from "../components/RouteMap";
 
 function OfferRide() {
     const navigate = useNavigate();
 
     const [form, setForm] = useState({
-        source: "",
-        destination: "",
-        departureTime: "",
-        availableSeats: "",
-        price: ""
-    });
+    source: "",
+    sourceLatitude: "",
+    sourceLongitude: "",
 
+    destination: "",
+    destinationLatitude: "",
+    destinationLongitude: "",
+
+    departureTime: "",
+    availableSeats: "",
+    price: ""
+});
+    const [pickupLocation, setPickupLocation] = useState(null);
+    const [destinationLocation, setDestinationLocation] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
@@ -25,52 +34,79 @@ function OfferRide() {
         });
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        setLoading(true);
-        setError("");
-        setSuccess("");
-
-        try {
-            const savedUser = localStorage.getItem("user");
-
-if (!savedUser) {
-    setError("Please login before offering a ride.");
-    setLoading(false);
-    return;
-}
-
-const user = JSON.parse(savedUser);
-
-const rideData = {
-    driverId: user.id,
-    source: form.source,
-    destination: form.destination,
-    departureTime: form.departureTime,
-    availableSeats: Number(form.availableSeats),
-    price: Number(form.price)
+    const handleSourceSelect = (location) => {
+    setPickupLocation(location);;
+    setForm((prev) => ({
+        ...prev,
+        source: location.name,
+        sourceLatitude: location.latitude,
+        sourceLongitude: location.longitude
+    }));
 };
 
-            await createRide(rideData);
+const handleDestinationSelect = (location) => {
+    setDestinationLocation(location);
+    setForm((prev) => ({
+        ...prev,
+        destination: location.name,
+        destinationLatitude: location.latitude,
+        destinationLongitude: location.longitude
+    }));
+};
+     const handleSubmit = async (e) => {
+    e.preventDefault();
 
-            setSuccess("Your ride has been published successfully!");
+    setLoading(true);
+    setError("");
+    setSuccess("");
 
-            setTimeout(() => {
-                navigate("/search-rides");
-            }, 1500);
+    try {
+        const savedUser = localStorage.getItem("user");
 
-        } catch (err) {
-            console.error("Create ride failed:", err);
-
-            setError(
-                err.response?.data?.message ||
-                "Unable to create ride. Please try again."
-            );
-        } finally {
+        if (!savedUser) {
+            setError("Please login before offering a ride.");
             setLoading(false);
+            return;
         }
-    };
+
+        const user = JSON.parse(savedUser);
+
+        const rideData = {
+            driverId: user.id,
+
+            source: form.source,
+            sourceLatitude: form.sourceLatitude,
+            sourceLongitude: form.sourceLongitude,
+
+            destination: form.destination,
+            destinationLatitude: form.destinationLatitude,
+            destinationLongitude: form.destinationLongitude,
+
+            departureTime: form.departureTime,
+            availableSeats: Number(form.availableSeats),
+            price: Number(form.price)
+        };
+
+        await createRide(rideData);
+
+        setSuccess("Your ride has been published successfully!");
+
+        setTimeout(() => {
+            navigate("/search-rides");
+        }, 1500);
+
+    } catch (err) {
+        console.error("Create ride failed:", err);
+
+        setError(
+            err.response?.data?.message ||
+            "Unable to create ride. Please try again."
+        );
+
+    } finally {
+        setLoading(false);
+    }
+};
 
     return (
         <div className="offer-page">
@@ -185,20 +221,10 @@ const rideData = {
                                         Pickup location
                                     </label>
 
-                                    <div className="input-with-icon">
-                                        <span className="location-dot">
-                                            ●
-                                        </span>
-
-                                        <input
-                                            type="text"
-                                            name="source"
-                                            value={form.source}
-                                            onChange={handleChange}
-                                            placeholder="e.g. Delhi"
-                                            required
-                                        />
-                                    </div>
+                                   <LocationInput
+                                        placeholder="Search pickup location"
+                                        onLocationSelect={handleSourceSelect}
+                                    /> 
 
                                 </div>
 
@@ -214,22 +240,16 @@ const rideData = {
                                         Destination
                                     </label>
 
-                                    <div className="input-with-icon">
-                                        <span className="destination-dot">
-                                            ●
-                                        </span>
-
-                                        <input
-                                            type="text"
-                                            name="destination"
-                                            value={form.destination}
-                                            onChange={handleChange}
-                                            placeholder="e.g. Noida"
-                                            required
-                                        />
-                                    </div>
+                                    <LocationInput
+                                        placeholder="Search destination"
+                                        onLocationSelect={handleDestinationSelect}
+                                    />
 
                                 </div>
+                                <RouteMap
+                                    pickup={pickupLocation}
+                                    destination={destinationLocation}
+                                />
 
                             </div>
 

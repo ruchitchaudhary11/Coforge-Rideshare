@@ -1,4 +1,3 @@
-
 package org.example.rideservice.service;
 
 import org.example.rideservice.dto.RideRequest;
@@ -13,7 +12,6 @@ import java.util.List;
 
 @Service
 public class RideService {
-
 
     private final RideRepository rideRepository;
 
@@ -34,8 +32,15 @@ public class RideService {
         Ride ride = new Ride();
 
         ride.setDriverId(driver.getId());
+
         ride.setSource(request.getSource());
+        ride.setSourceLatitude(request.getSourceLatitude());
+        ride.setSourceLongitude(request.getSourceLongitude());
+
         ride.setDestination(request.getDestination());
+        ride.setDestinationLatitude(request.getDestinationLatitude());
+        ride.setDestinationLongitude(request.getDestinationLongitude());
+
         ride.setDepartureTime(request.getDepartureTime());
         ride.setAvailableSeats(request.getAvailableSeats());
         ride.setPrice(request.getPrice());
@@ -55,18 +60,25 @@ public class RideService {
 
     public Ride updateRide(Long id, RideRequest request) {
 
-    Ride existingRide = rideRepository.findById(id)
-            .orElseThrow(() -> new RideNotFoundException(id));
+        Ride existingRide = rideRepository.findById(id)
+                .orElseThrow(() -> new RideNotFoundException(id));
 
-    existingRide.setDriverId(request.getDriverId());
-    existingRide.setSource(request.getSource());
-    existingRide.setDestination(request.getDestination());
-    existingRide.setDepartureTime(request.getDepartureTime());
-    existingRide.setAvailableSeats(request.getAvailableSeats());
-    existingRide.setPrice(request.getPrice());
+        existingRide.setDriverId(request.getDriverId());
 
-    return rideRepository.save(existingRide);
-}
+        existingRide.setSource(request.getSource());
+        existingRide.setSourceLatitude(request.getSourceLatitude());
+        existingRide.setSourceLongitude(request.getSourceLongitude());
+
+        existingRide.setDestination(request.getDestination());
+        existingRide.setDestinationLatitude(request.getDestinationLatitude());
+        existingRide.setDestinationLongitude(request.getDestinationLongitude());
+
+        existingRide.setDepartureTime(request.getDepartureTime());
+        existingRide.setAvailableSeats(request.getAvailableSeats());
+        existingRide.setPrice(request.getPrice());
+
+        return rideRepository.save(existingRide);
+    }
 
     public void deleteRide(Long id) {
 
@@ -75,6 +87,7 @@ public class RideService {
 
         rideRepository.delete(existingRide);
     }
+
     public Ride bookSeat(Long id) {
 
         Ride ride = rideRepository.findById(id)
@@ -88,8 +101,9 @@ public class RideService {
 
         return rideRepository.save(ride);
     }
+
     public List<Ride> getRidesByDriver(Long driverId) {
 
-    return rideRepository.findByDriverId(driverId);
-}
+        return rideRepository.findByDriverId(driverId);
+    }
 }

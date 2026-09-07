@@ -16,7 +16,15 @@ public class Ride {
 
     private String source;
 
+    private Double sourceLatitude;
+
+    private Double sourceLongitude;
+
     private String destination;
+
+    private Double destinationLatitude;
+
+    private Double destinationLongitude;
 
     private LocalDateTime departureTime;
 
@@ -47,12 +55,44 @@ public class Ride {
         this.source = source;
     }
 
+    public Double getSourceLatitude() {
+        return sourceLatitude;
+    }
+
+    public void setSourceLatitude(Double sourceLatitude) {
+        this.sourceLatitude = sourceLatitude;
+    }
+
+    public Double getSourceLongitude() {
+        return sourceLongitude;
+    }
+
+    public void setSourceLongitude(Double sourceLongitude) {
+        this.sourceLongitude = sourceLongitude;
+    }
+
     public String getDestination() {
         return destination;
     }
 
     public void setDestination(String destination) {
         this.destination = destination;
+    }
+
+    public Double getDestinationLatitude() {
+        return destinationLatitude;
+    }
+
+    public void setDestinationLatitude(Double destinationLatitude) {
+        this.destinationLatitude = destinationLatitude;
+    }
+
+    public Double getDestinationLongitude() {
+        return destinationLongitude;
+    }
+
+    public void setDestinationLongitude(Double destinationLongitude) {
+        this.destinationLongitude = destinationLongitude;
     }
 
     public LocalDateTime getDepartureTime() {

@@ -1,100 +1,80 @@
 import { useState } from "react";
 
-function LocationInput({
-    label,
-    name,
-    value,
-    onChange,
-    placeholder
-}) {
+const API_KEY = import.meta.env.VITE_GEOAPIFY_API_KEY;
 
+function LocationInput({ placeholder, onLocationSelect }) {
+    const [query, setQuery] = useState("");
     const [suggestions, setSuggestions] = useState([]);
+    const [loading, setLoading] = useState(false);
 
-    const handleChange = (e) => {
+    const searchLocation = async (value) => {
+        setQuery(value);
 
-        const text = e.target.value;
-
-        onChange({
-            target: {
-                name: name,
-                value: text
-            }
-        });
-
-        // Temporary suggestions
-        if (text.length > 0) {
-
-            setSuggestions([
-                `${text}, Delhi`,
-                `${text}, Noida`,
-                `${text}, Gurgaon`
-            ]);
-
-        } else {
-
+        if (value.length < 3) {
             setSuggestions([]);
+            return;
+        }
+
+        try {
+            setLoading(true);
+
+            const url =
+                `https://api.geoapify.com/v1/geocode/autocomplete` +
+                `?text=${encodeURIComponent(value)}` +
+                `&limit=5` +
+                `&apiKey=${API_KEY}`;
+
+            const response = await fetch(url);
+            const data = await response.json();
+
+            setSuggestions(data.features || []);
+        } catch (error) {
+            console.error("Location search failed:", error);
+            setSuggestions([]);
+        } finally {
+            setLoading(false);
         }
     };
 
-    const selectLocation = (location) => {
+    const selectLocation = (feature) => {
+        const properties = feature.properties;
 
-        onChange({
-            target: {
-                name: name,
-                value: location
-            }
-        });
+        const location = {
+            name: properties.name || properties.formatted,
+            address: properties.formatted,
+            latitude: properties.lat,
+            longitude: properties.lon
+        };
 
+        setQuery(properties.formatted);
         setSuggestions([]);
+
+        onLocationSelect(location);
     };
 
     return (
         <div className="location-input">
+            <input
+                type="text"
+                value={query}
+                placeholder={placeholder}
+                onChange={(e) => searchLocation(e.target.value)}
+            />
 
-            <label>
-                {label}
-            </label>
-
-            <div className="input-with-icon">
-
-                <span className="location-dot">
-                    ●
-                </span>
-
-                <input
-                    type="text"
-                    name={name}
-                    value={value}
-                    onChange={handleChange}
-                    placeholder={placeholder}
-                    autoComplete="off"
-                    required
-                />
-
-            </div>
+            {loading && <p>Searching...</p>}
 
             {suggestions.length > 0 && (
-
-                <div className="location-suggestions">
-
-                    {suggestions.map((location, index) => (
-
-                        <div
-                            key={index}
-                            className="location-suggestion"
-                            onClick={() =>
-                                selectLocation(location)
-                            }
+                <ul>
+                    {suggestions.map((feature, index) => (
+                        <li
+                            key={feature.properties.place_id || index}
+                            onClick={() => selectLocation(feature)}
                         >
-                            📍 {location}
-                        </div>
-
+                            {feature.properties.formatted}
+                        </li>
                     ))}
-
-                </div>
-
+                </ul>
             )}
-
         </div>
     );
 }

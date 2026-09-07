@@ -14,8 +14,20 @@ public class RideRequest {
     @NotBlank(message = "Source is required")
     private String source;
 
+    @NotNull(message = "Source latitude is required")
+    private Double sourceLatitude;
+
+    @NotNull(message = "Source longitude is required")
+    private Double sourceLongitude;
+
     @NotBlank(message = "Destination is required")
     private String destination;
+
+    @NotNull(message = "Destination latitude is required")
+    private Double destinationLatitude;
+
+    @NotNull(message = "Destination longitude is required")
+    private Double destinationLongitude;
 
     @NotNull(message = "Departure time is required")
     private LocalDateTime departureTime;
@@ -47,12 +59,44 @@ public class RideRequest {
         this.source = source;
     }
 
+    public Double getSourceLatitude() {
+        return sourceLatitude;
+    }
+
+    public void setSourceLatitude(Double sourceLatitude) {
+        this.sourceLatitude = sourceLatitude;
+    }
+
+    public Double getSourceLongitude() {
+        return sourceLongitude;
+    }
+
+    public void setSourceLongitude(Double sourceLongitude) {
+        this.sourceLongitude = sourceLongitude;
+    }
+
     public String getDestination() {
         return destination;
     }
 
     public void setDestination(String destination) {
         this.destination = destination;
+    }
+
+    public Double getDestinationLatitude() {
+        return destinationLatitude;
+    }
+
+    public void setDestinationLatitude(Double destinationLatitude) {
+        this.destinationLatitude = destinationLatitude;
+    }
+
+    public Double getDestinationLongitude() {
+        return destinationLongitude;
+    }
+
+    public void setDestinationLongitude(Double destinationLongitude) {
+        this.destinationLongitude = destinationLongitude;
     }
 
     public LocalDateTime getDepartureTime() {
